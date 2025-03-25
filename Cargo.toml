@@ -1,0 +1,13 @@
+[package]
+name = "robustmq-proto-build"
+version = "0.1.0"
+edition = "2021"
+include = ["protos/**/*.proto", "src/**/*.rs"]
+license = "Apache-2.0"
+authors = ["RobustMQ <contact@robustmq.com>"]
+description = "Build script for RobustMQ proto files"
+
+[dependencies]
+tonic-build = "0.12.3"
+prost-build = "0.13.2"
+prost-validate-build = "0.2.6"
