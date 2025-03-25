@@ -16,13 +16,14 @@ enum ApiKey{
     // shard
     CreateShard = 3;
     DeleteShard = 4;
-    
+    ListShard = 5;
+
     // metadata
-    GetShardMetadata = 5;
-    GetClusterMetadata = 6;
+    GetShardMetadata = 6;
+    GetClusterMetadata = 7;
 
     // Offset
-    FetchOffset = 7;
+    FetchOffset = 8;
 }
 
 enum ApiVersion{

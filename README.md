@@ -9,7 +9,7 @@ The protobuf protocol for RobustMQ grpc server.
 ## Install
 
 ```bash
-cargo add robustmq-proto-build --git=https://github.com/robustmq/robustmq-proto.git
+cargo add robustmq-proto-build --git=https://github.com/robustmq/robustmq-proto.git --build
 ```
 
 **Import proto file directly**
