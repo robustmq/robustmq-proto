@@ -122,6 +122,26 @@ message DeleteShardResp{
     DeleteShardRespBody body = 2;
 }
 
+/** List Shard **/
+message ListShardReqBody {
+    string namespace = 1;
+    string shard_name = 2;
+}
+
+message ListShardRespBody {
+    repeated bytes shards = 1;
+}
+
+message ListShardReq {
+    ReqHeader header = 1;
+    ListShardReqBody body = 2;
+}
+
+message ListShardResp {
+    RespHeader header = 1;
+    ListShardRespBody body = 2;
+}
+
 
 /** Get Shard Metadata **/
 message GetShardMetadataReqBody{
