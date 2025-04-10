@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 RobustMQ Team
+ * Copyright 2023 RobustMQ Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,123 +18,114 @@ syntax = "proto3";
 package placement.center.journal;
 
 service EngineService {
-  rpc ListShard(ListShardRequest) returns(ListShardReply){}
+  rpc ListShard(ListShardRequest) returns (ListShardReply) {}
 
-  rpc CreateShard(CreateShardRequest) returns(CreateShardReply){}
+  rpc CreateShard(CreateShardRequest) returns (CreateShardReply) {}
 
-  rpc DeleteShard(DeleteShardRequest) returns(DeleteShardReply){}
+  rpc DeleteShard(DeleteShardRequest) returns (DeleteShardReply) {}
 
-  rpc ListSegment(ListSegmentRequest) returns(ListSegmentReply){}
+  rpc ListSegment(ListSegmentRequest) returns (ListSegmentReply) {}
 
-  rpc CreateNextSegment(CreateNextSegmentRequest) returns(CreateNextSegmentReply){}
+  rpc CreateNextSegment(CreateNextSegmentRequest) returns (CreateNextSegmentReply) {}
 
-  rpc DeleteSegment(DeleteSegmentRequest) returns(DeleteSegmentReply){}
+  rpc DeleteSegment(DeleteSegmentRequest) returns (DeleteSegmentReply) {}
 
-  rpc UpdateSegmentStatus(UpdateSegmentStatusRequest) returns(UpdateSegmentStatusReply){}
+  rpc UpdateSegmentStatus(UpdateSegmentStatusRequest) returns (UpdateSegmentStatusReply) {}
 
-  rpc ListSegmentMeta(ListSegmentMetaRequest) returns(ListSegmentMetaReply){}
+  rpc ListSegmentMeta(ListSegmentMetaRequest) returns (ListSegmentMetaReply) {}
 
-  rpc UpdateSegmentMeta(UpdateSegmentMetaRequest) returns(UpdateSegmentMetaReply){}
+  rpc UpdateSegmentMeta(UpdateSegmentMetaRequest) returns (UpdateSegmentMetaReply) {}
 }
 
-message ListShardRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
+message ListShardRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
 }
 
-message ListShardReply{
-    bytes shards = 1;
+message ListShardReply {
+  bytes shards = 1;
 }
 
-message CreateShardRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
-    bytes  shard_config = 4;
+message CreateShardRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
+  bytes shard_config = 4;
 }
 
-message CreateShardReply{
-    uint32 segment_no = 1;
-    repeated uint64 replica = 2;
+message CreateShardReply {
+  uint32 segment_no = 1;
+  repeated uint64 replica = 2;
 }
 
-message DeleteShardRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
+message DeleteShardRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
 }
 
-message DeleteShardReply{
+message DeleteShardReply {}
 
+message ListSegmentRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
+  int32 segment_no = 4;
 }
 
-message ListSegmentRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
-    int32 segment_no = 4;
+message ListSegmentReply {
+  bytes segments = 1;
 }
 
-message ListSegmentReply{
-    bytes segments = 1;
+message CreateNextSegmentRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
 }
 
-message CreateNextSegmentRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
+message CreateNextSegmentReply {}
+
+message DeleteSegmentRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
+  uint32 segment_seq = 4;
 }
 
-message CreateNextSegmentReply{
+message DeleteSegmentReply {}
+
+message UpdateSegmentStatusRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
+  uint32 segment_seq = 4;
+  string cur_status = 5;
+  string next_status = 6;
 }
 
-message DeleteSegmentRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
-    uint32 segment_seq = 4;
+message UpdateSegmentStatusReply {}
+
+message ListSegmentMetaRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
+  int32 segment_no = 4;
 }
 
-message DeleteSegmentReply{
-
+message ListSegmentMetaReply {
+  bytes segments = 1;
 }
 
-message UpdateSegmentStatusRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
-    uint32 segment_seq = 4;
-    string cur_status = 5;
-    string next_status = 6;
+message UpdateSegmentMetaRequest {
+  string cluster_name = 1;
+  string namespace = 2;
+  string shard_name = 3;
+  uint32 segment_no = 4;
+  int64 start_offset = 5;
+  int64 end_offset = 6;
+  int64 start_timestamp = 7;
+  int64 end_timestamp = 8;
 }
 
-message UpdateSegmentStatusReply{
-
-}
-
-message ListSegmentMetaRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
-    int32 segment_no = 4;
-}
-
-message ListSegmentMetaReply{
-    bytes segments = 1;
-
-}
-
-message UpdateSegmentMetaRequest{
-    string cluster_name = 1;
-    string namespace = 2;
-    string shard_name = 3;
-    uint32 segment_no = 4;
-    int64 start_offset = 5;
-    int64 end_offset = 6;
-    int64 start_timestamp = 7;
-    int64 end_timestamp = 8;
-}
-
-message UpdateSegmentMetaReply{
-}
+message UpdateSegmentMetaReply {}
