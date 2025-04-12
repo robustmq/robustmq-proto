@@ -12,16 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-[package]
-name = "robustmq-proto-build"
-version = "0.1.0"
-edition = "2021"
-include = ["protos/**/*.proto", "src/**/*.rs"]
-license = "Apache-2.0"
-authors = ["RobustMQ <contact@robustmq.com>"]
-description = "Build script for RobustMQ proto files"
-
-[dependencies]
-tonic-build = "0.12.3"
-prost-build = "0.13.2"
-prost-validate-build = "0.2.6"
+# For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yaml
+version: v2
+lint:
+  use:
+    - STANDARD
+breaking:
+  use:
+    - FILE

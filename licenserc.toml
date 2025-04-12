@@ -12,16 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-[package]
-name = "robustmq-proto-build"
-version = "0.1.0"
-edition = "2021"
-include = ["protos/**/*.proto", "src/**/*.rs"]
-license = "Apache-2.0"
-authors = ["RobustMQ <contact@robustmq.com>"]
-description = "Build script for RobustMQ proto files"
+headerPath = "Apache-2.0.txt"
 
-[dependencies]
-tonic-build = "0.12.3"
-prost-build = "0.13.2"
-prost-validate-build = "0.2.6"
+includes = [
+    "*.yml",
+    "*.yaml",
+    "*.toml",
+    "*.sh",
+    "*.rs",
+    "*.py",
+    "*.proto"
+]
+
+[properties]
+inceptionYear = 2023
+copyrightOwner = "RobustMQ Team"

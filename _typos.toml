@@ -12,16 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-[package]
-name = "robustmq-proto-build"
-version = "0.1.0"
-edition = "2021"
-include = ["protos/**/*.proto", "src/**/*.rs"]
-license = "Apache-2.0"
-authors = ["RobustMQ <contact@robustmq.com>"]
-description = "Build script for RobustMQ proto files"
+[default.extend-identifiers-re]
 
-[dependencies]
-tonic-build = "0.12.3"
-prost-build = "0.13.2"
-prost-validate-build = "0.2.6"
+
+[default.extend-words]
+# This words is a spelling error for paho-mqtt package.
+# we need to ignore it.
+Identifer = "Identifer"
+
+# Ignore the unsubscribe term as it's used in the MQTT context.
+# todo fix spelling error
+UNSUBSCRIBE = "UNSUBSCRIBE"
+unsubscrible = "unsubscrible"
+SUBSCRIBLE = "SUBSCRIBLE"
+
+
+[files]
+extend-exclude = []
