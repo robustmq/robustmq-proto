@@ -17,6 +17,9 @@
 syntax = "proto3";
 package broker.mqtt.admin;
 service MQTTBrokerAdminService {
+  // common
+  rpc mqtt_broker_enable_feature(EnableFeatureRequest) returns (EnableFeatureReply) {}
+
   // cluster
   rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
 
@@ -77,6 +80,15 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_delete_auto_subscribe_rule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
 
   rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
+}
+
+// --------- common --------
+message EnableFeatureRequest {
+  bool is_enable = 1;
+}
+
+message EnableFeatureReply {
+  bool is_enable = 1;
 }
 
 // --------- cluster --------
