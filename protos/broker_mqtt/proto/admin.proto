@@ -18,7 +18,7 @@ syntax = "proto3";
 package broker.mqtt.admin;
 service MQTTBrokerAdminService {
   // common
-  rpc mqtt_broker_enable_feature(EnableFeatureRequest) returns (EnableFeatureReply) {}
+  rpc mqtt_broker_set_cluster_config(SetClusterConfigRequest) returns (SetClusterConfigReply) {}
 
   // cluster
   rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
@@ -83,12 +83,12 @@ service MQTTBrokerAdminService {
 }
 
 // --------- common --------
-message EnableFeatureRequest {
+message SetClusterConfigRequest {
   string feature_name = 1;
   bool is_enable = 2;
 }
 
-message EnableFeatureReply {
+message SetClusterConfigReply {
   string feature_name = 1;
   bool is_enable = 2;
 }
