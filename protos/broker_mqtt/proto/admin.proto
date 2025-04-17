@@ -51,7 +51,6 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_list_connection(ListConnectionRequest) returns (ListConnectionReply) {}
 
   // observability: slow-sub
-  rpc mqtt_broker_enable_slow_subscribe(EnableSlowSubscribeRequest) returns (EnableSlowSubScribeReply) {}
   rpc mqtt_broker_list_slow_subscribe(ListSlowSubscribeRequest) returns (ListSlowSubscribeReply) {}
   rpc mqtt_broker_list_topic(ListTopicRequest) returns (ListTopicReply) {}
 
@@ -202,14 +201,6 @@ message EnableFlappingDetectReply {
 
 // --------- observability service --------
 // --------- slow subscribe feature -------
-message EnableSlowSubscribeRequest {
-  bool is_enable = 1;
-}
-
-message EnableSlowSubScribeReply {
-  bool is_enable = 1;
-}
-
 message ListSlowSubscribeRequest {
   uint64 list = 1;
   string sub_name = 3;
