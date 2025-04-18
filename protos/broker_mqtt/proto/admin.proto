@@ -17,6 +17,9 @@
 syntax = "proto3";
 package broker.mqtt.admin;
 service MQTTBrokerAdminService {
+  // common
+  rpc mqtt_broker_set_cluster_config(SetClusterConfigRequest) returns (SetClusterConfigReply) {}
+
   // cluster
   rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
 
@@ -48,7 +51,6 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_list_connection(ListConnectionRequest) returns (ListConnectionReply) {}
 
   // observability: slow-sub
-  rpc mqtt_broker_enable_slow_subscribe(EnableSlowSubscribeRequest) returns (EnableSlowSubScribeReply) {}
   rpc mqtt_broker_list_slow_subscribe(ListSlowSubscribeRequest) returns (ListSlowSubscribeReply) {}
   rpc mqtt_broker_list_topic(ListTopicRequest) returns (ListTopicReply) {}
 
@@ -77,6 +79,17 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_delete_auto_subscribe_rule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
 
   rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
+}
+
+// --------- common --------
+message SetClusterConfigRequest {
+  string feature_name = 1;
+  bool is_enable = 2;
+}
+
+message SetClusterConfigReply {
+  string feature_name = 1;
+  bool is_enable = 2;
 }
 
 // --------- cluster --------
@@ -188,14 +201,6 @@ message EnableFlappingDetectReply {
 
 // --------- observability service --------
 // --------- slow subscribe feature -------
-message EnableSlowSubscribeRequest {
-  bool is_enable = 1;
-}
-
-message EnableSlowSubScribeReply {
-  bool is_enable = 1;
-}
-
 message ListSlowSubscribeRequest {
   uint64 list = 1;
   string sub_name = 3;
