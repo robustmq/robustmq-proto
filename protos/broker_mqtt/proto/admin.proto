@@ -96,7 +96,7 @@ message SetClusterConfigReply {
 message GetClusterConfigRequest {
 }
 message GetClusterConfigReply {
-  string mqtt_broker_cluster_dynamic_config = 1;
+  bytes mqtt_broker_cluster_dynamic_config = 1;
 }
 
 // --------- cluster --------
