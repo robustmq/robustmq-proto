@@ -107,9 +107,9 @@ message ClusterStatusReply {
 // ---------- client --------
 message ListClientRequest {}
 message ListClientReply {
-  repeated MqttClient clients = 1;
+  repeated ClientRaw clients = 1;
 }
-message MqttClient {
+message ClientRaw {
   // Basic Info
   string client_id = 1;
   string username = 2;
@@ -128,9 +128,9 @@ message MqttClient {
 // ----------- session --------
 message ListSessionRequest {}
 message ListSessionReply {
-  repeated MqttSession sessions = 1;
+  repeated SessionRaw sessions = 1;
 }
-message MqttSession {
+message SessionRaw {
   string client_id = 1;
   uint64 session_expiry = 2;
   bool is_contain_last_will = 3;
