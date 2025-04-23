@@ -128,12 +128,13 @@ message ListSessionReply {
   string client_id = 1;
   uint64 session_expiry = 2;
   bool is_contain_last_will = 3;
-  uint64 create_time = 4;
+  optional uint64 last_will_delay_interval = 4;
+  uint64 create_time = 5;
 
-  optional uint64 connection_id = 5;
-  optional uint64 broker_id = 6;
-  optional uint64 reconnect_time = 7;
-  optional uint64 distinct_time = 8;
+  optional uint64 connection_id = 6;
+  optional uint64 broker_id = 7;
+  optional uint64 reconnect_time = 8;
+  optional uint64 distinct_time = 9;
 }
 
 // --------- user --------
