@@ -19,6 +19,7 @@ package broker.mqtt.admin;
 service MQTTBrokerAdminService {
   // common
   rpc mqtt_broker_set_cluster_config(SetClusterConfigRequest) returns (SetClusterConfigReply) {}
+  rpc mqtt_broker_get_cluster_config(GetClusterConfigRequest) returns (GetClusterConfigReply) {}
 
   // cluster
   rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
@@ -90,6 +91,12 @@ message SetClusterConfigRequest {
 message SetClusterConfigReply {
   string feature_name = 1;
   bool is_enable = 2;
+}
+
+message GetClusterConfigRequest {
+}
+message GetClusterConfigReply {
+  bytes mqtt_broker_cluster_dynamic_config = 1;
 }
 
 // --------- cluster --------
