@@ -80,12 +80,55 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
 }
 
-// --------- common --------
+// --------- common -----------
+
+// Common Pagination Parameters (Optional)
+message Pagination {
+  optional uint32 limit = 1;   // default: 10
+  optional uint32 offset = 2;  // default: 0
+}
+
+// Common Filter Parameters (Optional)
+message Filter {
+  string field = 1;
+  repeated string values = 2;
+  optional MatchMode exact_match = 3;
+}
+
+enum MatchMode {
+  // ExactMatch
+  EXACT = 0;
+  // FuzzyMatch
+  FUZZY = 1;
+}
+
+// Common Sorting Parameters (Optional)
+message Sorting {
+  // The field to sort by
+  optional string order_by = 1;
+  // The sorting direction
+  optional OrderDirection direction = 2;
+}
+
+enum OrderDirection {
+  ASC = 0;
+  DESC = 1;
+}
+
+// Optional Query Parameters
+// Completely optional, not passing (such as CLI query) returns all
+message QueryOptions {
+  optional Pagination pagination = 1;
+  // When there are no filter conditions, return an empty list
+  repeated Filter filters = 2;
+  optional Sorting sorting = 3;
+}
+
+// --------- cluster --------
 message SetClusterConfigRequest {
   string feature_name = 1;
   bool is_enable = 2;
 }
-
 message SetClusterConfigReply {
   string feature_name = 1;
   bool is_enable = 2;
@@ -97,7 +140,6 @@ message GetClusterConfigReply {
   bytes mqtt_broker_cluster_dynamic_config = 1;
 }
 
-// --------- cluster --------
 message ClusterStatusRequest {}
 message ClusterStatusReply {
   string cluster_name = 1;
@@ -105,9 +147,12 @@ message ClusterStatusReply {
 }
 
 // ---------- client --------
-message ListClientRequest {}
+message ListClientRequest {
+  optional QueryOptions options = 1;
+}
 message ListClientReply {
   repeated ClientRaw clients = 1;
+  optional uint32 total_count = 2;
 }
 message ClientRaw {
   // Basic Info
@@ -126,9 +171,12 @@ message ClientRaw {
 }
 
 // ----------- session --------
-message ListSessionRequest {}
+message ListSessionRequest {
+  optional QueryOptions options = 1;
+}
 message ListSessionReply {
   repeated SessionRaw sessions = 1;
+  optional uint32 total_count = 2;
 }
 message SessionRaw {
   string client_id = 1;
