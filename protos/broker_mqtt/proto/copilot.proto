@@ -1,0 +1,215 @@
+/*
+ * Copyright 2023 RobustMQ Team
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto3";
+package broker.mqtt.copilot.cluster_status;
+
+service MQTTBrokerCopilotService {
+
+  // ------------------------------------------------------------------------
+  //  cluster overview
+  // ------------------------------------------------------------------------
+  rpc mqtt_broker_cluster_overview(GetMqttClusterOverviewRequest) returns (GetMqttClusterOverviewReply) {}
+
+  rpc mqtt_broker_total_node_list(GetMqttTotalNodeListRequest) returns (GetMqttTotalNodeListReply) {}
+
+  rpc mqtt_broker_cluster_metric(GetMqttClusterMetricRequest) returns (GetMqttMetricReply) {}
+
+  rpc mqtt_broker_metric(GetMqttBrokerMetricRequest) returns (GetMqttMetricReply) {}
+
+}
+
+// ------------------------------------------------------------------------
+// cluster overview
+// ------------------------------------------------------------------------
+message GetMqttClusterOverviewRequest {}
+
+message GetMqttClusterOverviewReply {
+
+  double message_inflow_rate = 1;
+  double message_outflow_rate = 2;
+
+  uint32 connection_count = 3;
+  uint32 online_connection_count = 4;
+  uint32 topic_count= 5;
+  uint32 subscription_count = 6;
+  uint32 shared_subscription_count = 7;
+  uint32 retained_message_count = 8;
+
+  uint32 max_file_descriptors = 9;
+
+  uint32 node_count = 10;
+  repeated NodeInfo nodes = 11;
+
+  message NodeInfo {
+    // Basic node info
+    string node_name = 1;
+    string version = 2;
+    string node_role = 3;
+
+    uint64 uptime = 4; // in seconds
+
+    // Connection stats
+    uint32 connections_count = 5;  // 0
+    uint32 subscriptions_count = 6; // 0
+    uint32 topics_count = 7;       // 0
+  }
+}
+
+// ------------------node list---------------------
+message GetMqttTotalNodeListRequest {}
+
+message GetMqttTotalNodeListReply {
+  repeated NodeInfo nodes = 1;
+
+  message NodeInfo {
+    // Basic node info
+    string node_name = 1;
+    string version = 2;
+    string node_role = 3;
+
+    uint64 uptime = 4; // in seconds
+
+    // Connection stats
+    uint32 connections_count = 5;
+    uint32 subscriptions_count = 6;
+    uint32 topics_count = 7;
+  }
+}
+
+// ----------metrics (for cluster and nodes)-----------
+message GetMqttClusterMetricRequest {}
+
+message GetMqttBrokerMetricRequest {
+  string node_name = 1;
+}
+
+message GetMqttMetricReply {
+
+  // Request processing metrics
+  message RequestLatencyMetrics {
+    uint64 request_total_ms = 1;    // Total request processing time (ms)
+    uint64 request_queue_ms = 2;    // Time spent in queue (ms)
+    uint64 request_handler_ms = 3;  // Handler processing time (ms)
+    uint64 request_response_ms = 4; // Response processing time (ms)
+  }
+  RequestLatencyMetrics request_latency = 1;
+
+  // Return code statistics
+  message ReturnCodeStats {
+    map<uint32, uint64> return_code_num = 1;  // Key: error code, Value: occurrence count
+  }
+  ReturnCodeStats return_code = 2;
+
+  // Subscription metrics
+  message SubscriptionMetrics {
+    uint64 sended_packets_num = 1;  // Number of packets sent in response
+    uint64 sended_packets_ms = 2;   // Time taken to publish responses (ms)
+  }
+  SubscriptionMetrics subscription = 3;
+
+  // Connector metrics
+  message ConnectorMetrics {
+    uint32 connector_num = 1;           // Number of connectors
+    uint64 connector_drop_msg_num = 2;  // Number of messages dropped by connector tasks
+  }
+  ConnectorMetrics connector = 4;
+
+  // Inbound and outbound Traffic metrics
+  message TrafficMetrics {
+    uint64 bytes_received = 1;  // Total bytes received
+    uint64 bytes_sent = 2;      // Total bytes sent
+  }
+  TrafficMetrics traffic = 5;
+
+  // Packet metrics (received)
+  message PacketReceivedMetrics {
+    uint64 packets_received = 1;           // Total packets received
+    uint64 packets_connect_received = 2;   // CONNECT packets received
+    uint64 packets_publish_received = 3;   // PUBLISH packets received
+    uint64 packets_puback_received = 4;    // PUBACK packets received
+    uint64 packets_pubrec_received = 5;    // PUBREC packets received
+    uint64 packets_pubrel_received = 6;    // PUBREL packets received
+    uint64 packets_pubcomp_received = 7;   // PUBCOMP packets received
+    uint64 packets_subscribe_received = 8; // SUBSCRIBE packets received
+    uint64 packets_unsubscribe_received = 9; // UNSUBSCRIBE packets received
+    uint64 packets_pingreq_received = 10;  // PINGREQ packets received
+    uint64 packets_disconnect_received = 11; // DISCONNECT packets received
+    uint64 packets_auth_received = 12;     // AUTH packets received
+  }
+  PacketReceivedMetrics packet_received = 6;
+
+  // Packet metrics (sent)
+  message PacketSentMetrics {
+    uint64 packets_sent = 1;             // Total packets sent
+    uint64 packets_connack_sent = 2;     // CONNACK packets sent
+    uint64 packets_publish_sent = 3;     // PUBLISH packets sent
+    uint64 packets_puback_sent = 4;      // PUBACK packets sent
+    uint64 packets_pubrec_sent = 5;      // PUBREC packets sent
+    uint64 packets_pubrel_sent = 6;      // PUBREL packets sent
+    uint64 packets_pubcomp_sent = 7;     // PUBCOMP packets sent
+    uint64 packets_suback_sent = 8;      // SUBACK packets sent
+    uint64 packets_unsuback_sent = 9;    // UNSUBACK packets sent
+    uint64 packets_pingresp_sent = 10;   // PINGRESP packets sent
+    uint64 packets_disconnect_sent = 11; // DISCONNECT packets sent
+    uint64 packets_auth_sent = 12;       // AUTH packets sent
+    uint64 packets_connack_auth_error = 13; // CONNACK with auth error codes (0x86, 0x87)
+    uint64 packets_connack_error = 14;   // CONNACK with any non-zero error code
+  }
+  PacketSentMetrics packet_sent = 7;
+
+  // Message metrics
+  message MessageMetrics {
+    uint64 messages_delayed = 1;    // Number of delayed messages in storage
+    uint64 messages_delivered = 2;  // Number of messages forwarded to subscribers
+  }
+  MessageMetrics message = 8;
+
+  // Event metrics
+  message EventMetrics {
+    uint64 client_connack = 1;  // Count of CONNACK messages received by clients
+    uint64 client_connect = 2;  // Count of connection attempts (successful + failed)
+  }
+  EventMetrics event = 9;
+
+  // Session metrics
+  message SessionMetrics {
+    uint64 session_created = 1;    // Number of sessions created
+    uint64 session_discarded = 2;  // Number of sessions discarded
+  }
+  SessionMetrics session = 10;
+
+  // Authentication and authorization metrics
+  message AuthorizationMetrics {
+    uint64 authorization_allow = 1;  // Number of allowed authorizations (including cached/default)
+    uint64 authorization_deny = 2;   // Number of denied authorizations (including cached/default)
+  }
+  AuthorizationMetrics authorization = 11;
+
+  // Message Delivery metrics
+  message DeliveryMetrics {
+    uint64 delivery_dropped_too_large = 1;   // Messages dropped due to size limits
+    uint64 delivery_dropped_queue_full = 2;  // QoS>0 messages dropped due to full queue
+  }
+  DeliveryMetrics delivery = 12;
+
+  // Connection statistics metrics
+  message ConnectionMetrics {
+    uint32 connections_count = 1;  // Current number of connections
+    uint32 connections_max = 2;    // Historical maximum connections
+  }
+  ConnectionMetrics connection = 13;
+}
