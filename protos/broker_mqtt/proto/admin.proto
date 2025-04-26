@@ -152,7 +152,7 @@ message ListClientRequest {
 }
 message ListClientReply {
   repeated ClientRaw clients = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 message ClientRaw {
   // Basic Info
@@ -176,7 +176,7 @@ message ListSessionRequest {
 }
 message ListSessionReply {
   repeated SessionRaw sessions = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 message SessionRaw {
   string client_id = 1;
@@ -198,7 +198,7 @@ message ListUserRequest {
 
 message ListUserReply {
   repeated UserRaw users = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 
 message UserRaw {
