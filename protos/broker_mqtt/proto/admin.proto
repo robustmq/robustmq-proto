@@ -192,17 +192,18 @@ message SessionRaw {
 }
 
 // --------- user --------
-message ListUserRequest {}
+message ListUserRequest {
+  optional QueryOptions options = 1;
+}
 
 message ListUserReply {
   repeated bytes users = 1;
+  optional uint32 total_count = 2;
 }
 
 message CreateUserRequest {
   string username = 1;
-
   string password = 2;
-
   bool is_superuser = 3;
 }
 
