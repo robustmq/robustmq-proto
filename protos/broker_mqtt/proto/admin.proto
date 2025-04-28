@@ -253,7 +253,7 @@ message ListBlacklistRequest {
 
 message ListBlacklistReply {
   repeated BlacklistRaw blacklists = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 
 message BlacklistRaw {
