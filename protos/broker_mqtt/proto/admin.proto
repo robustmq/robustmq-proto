@@ -92,7 +92,7 @@ message Pagination {
 message Filter {
   string field = 1;
   repeated string values = 2;
-  MatchMode exact_match = 3;
+  optional MatchMode exact_match = 3;
 }
 
 enum MatchMode {
