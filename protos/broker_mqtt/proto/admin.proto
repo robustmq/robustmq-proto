@@ -84,8 +84,8 @@ service MQTTBrokerAdminService {
 
 // Common Pagination Parameters (Optional)
 message Pagination {
-  optional uint32 limit = 1;   // default: 10
-  optional uint32 offset = 2;  // default: 0
+  uint32 limit = 1;
+  uint32 offset = 2;
 }
 
 // Common Filter Parameters (Optional)
@@ -105,9 +105,9 @@ enum MatchMode {
 // Common Sorting Parameters (Optional)
 message Sorting {
   // The field to sort by
-  optional string order_by = 1;
+  string order_by = 1;
   // The sorting direction
-  optional OrderDirection direction = 2;
+  OrderDirection direction = 2;
 }
 
 enum OrderDirection {
@@ -152,7 +152,7 @@ message ListClientRequest {
 }
 message ListClientReply {
   repeated ClientRaw clients = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 message ClientRaw {
   // Basic Info
@@ -162,7 +162,8 @@ message ClientRaw {
   // Connection Status
   bool is_online = 3;
   string source_ip = 4;
-  uint64 connected_at = 5; // timestamp
+  // timestamp
+  uint64 connected_at = 5;
   uint32 keep_alive = 6;
 
   // Session Info
@@ -176,7 +177,7 @@ message ListSessionRequest {
 }
 message ListSessionReply {
   repeated SessionRaw sessions = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 message SessionRaw {
   string client_id = 1;
@@ -192,17 +193,23 @@ message SessionRaw {
 }
 
 // --------- user --------
-message ListUserRequest {}
+message ListUserRequest {
+  optional QueryOptions options = 1;
+}
 
 message ListUserReply {
-  repeated bytes users = 1;
+  repeated UserRaw users = 1;
+  uint32 total_count = 2;
+}
+
+message UserRaw {
+  string username = 1;
+  bool is_superuser = 3;
 }
 
 message CreateUserRequest {
   string username = 1;
-
   string password = 2;
-
   bool is_superuser = 3;
 }
 
@@ -217,10 +224,12 @@ message DeleteUserReply {}
 // --------- acl --------
 message ListAclRequest {
   string cluster_name = 1;
+  optional QueryOptions options = 2;
 }
 
 message ListAclReply {
   repeated bytes acls = 1;
+  optional uint32 total_count = 2;
 }
 
 message DeleteAclRequest {
@@ -240,15 +249,32 @@ message CreateAclReply {}
 // --------- blacklist --------
 message ListBlacklistRequest {
   string cluster_name = 1;
+  optional QueryOptions options = 2;
 }
 
 message ListBlacklistReply {
-  repeated bytes blacklists = 1;
+  repeated BlacklistRaw blacklists = 1;
+  uint32 total_count = 2;
+}
+
+message BlacklistRaw {
+  BlacklistType blacklist_type = 1;
+  string resource_name = 2;
+  uint64 end_time = 3;
+  string desc = 4;
+}
+
+enum BlacklistType {
+  CLIENT_ID = 0;
+  USERNAME = 1;
+  IP_ADDRESS = 2;
+  CLIENT_ID_MATCH = 3;
+  USERNAME_MATCH = 4;
+  IP_CIDR = 5;
 }
 
 message CreateBlacklistRequest {
   string cluster_name = 1;
-
   bytes blacklist = 2;
 }
 
@@ -256,9 +282,7 @@ message CreateBlacklistReply {}
 
 message DeleteBlacklistRequest {
   string cluster_name = 1;
-
   string blacklist_type = 2;
-
   string resource_name = 3;
 }
 
