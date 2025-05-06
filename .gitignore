@@ -1,2 +1,9 @@
 /target
 .DS_Store
+
+# Local binary directory
+bin/
+
+# Editor
+.vscode/
+.idea/

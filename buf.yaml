@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yaml
 version: v2
+modules:
+  - name: "robust/robustmq/proto"
+    path: "protos"
 lint:
   use:
     - STANDARD
-breaking:
-  use:
-    - FILE
+  # we don't need to lint check external proto dependencies
+  ignore:
+    - "protos/vendor/validate/validate.proto"
