@@ -18,20 +18,20 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     // Declare dependencies for all proto files and directories
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root.join("protos/journal_server/*.proto").display()
+        proto_root.join("protos/journal_server/proto/*.proto").display()
     );
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root.join("protos/broker_mqtt/*.proto").display()
+        proto_root.join("protos/broker_mqtt/proto/*.proto").display()
     );
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root.join("protos/placement_center/*.proto").display()
+        proto_root.join("protos/placement_center/proto/*.proto").display()
     );
     println!(
         "cargo:rerun-if-changed={}",
         proto_root
-            .join("protos/prost_validation_types/*.proto")
+            .join("protos/vendor/validate/*.proto")
             .display()
     );
 
@@ -56,7 +56,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
                 .unwrap(),
         ],
         &[proto_root
-            .join("protos/journal_server/proto/")
+            .join("protos/")
             .to_str()
             .unwrap()],
     )?;
@@ -74,7 +74,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
                 .unwrap(),
         ],
         &[proto_root
-            .join("protos/broker_mqtt/proto/")
+            .join("protos/")
             .to_str()
             .unwrap()],
     )?;
@@ -112,11 +112,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
         ],
         &[
             proto_root
-                .join("protos/placement_center/proto/")
-                .to_str()
-                .unwrap(),
-            proto_root
-                .join("protos/prost_validation_types/proto/")
+                .join("protos/")
                 .to_str()
                 .unwrap(),
         ],

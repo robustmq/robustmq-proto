@@ -17,7 +17,7 @@
 syntax = "proto3";
 package placement.center.inner;
 
-import "validate/validate.proto";
+import "vendor/validate/validate.proto";
 
 // The type of the cluster.
 enum ClusterType {

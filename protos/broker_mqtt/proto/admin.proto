@@ -134,8 +134,7 @@ message SetClusterConfigReply {
   bool is_enable = 2;
 }
 
-message GetClusterConfigRequest {
-}
+message GetClusterConfigRequest {}
 message GetClusterConfigReply {
   bytes mqtt_broker_cluster_dynamic_config = 1;
 }
