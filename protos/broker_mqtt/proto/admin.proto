@@ -345,11 +345,11 @@ message ListTopicRequest {
 }
 
 message ListTopicReply {
-  repeated MqttTopic topics = 1;
+  repeated MqttTopicRaw topics = 1;
   uint32 total_count = 2;
 }
 
-message MqttTopic {
+message MqttTopicRaw {
   string topic_id = 1;
   string cluster_name = 2;
   string topic_name = 3;
