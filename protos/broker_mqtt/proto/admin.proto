@@ -228,7 +228,7 @@ message ListAclRequest {
 
 message ListAclReply {
   repeated bytes acls = 1;
-  optional uint32 total_count = 2;
+  uint32 total_count = 2;
 }
 
 message DeleteAclRequest {
@@ -338,20 +338,17 @@ message ListSlowSubScribeRaw {
 }
 
 // --------- mqtt topic --------
-enum MatchOption {
-  E = 0;
-  P = 1;
-  S = 2;
+message ListTopicRequest {
+  optional string topic_name = 1;
+  optional QueryOptions options = 2;
 }
 
-message ListTopicRequest {
-  string topic_name = 1;
-  MatchOption match_option = 2;
-}
 message ListTopicReply {
-  repeated MqttTopic topics = 1;
+  repeated MqttTopicRaw topics = 1;
+  uint32 total_count = 2;
 }
-message MqttTopic {
+
+message MqttTopicRaw {
   string topic_id = 1;
   string cluster_name = 2;
   string topic_name = 3;
@@ -383,7 +380,7 @@ message CreateTopicRewriteRuleRequest {
 
 message CreateTopicRewriteRuleReply {}
 
-// --------- mqtt topic --------
+// --------- mqtt connector --------
 enum MqttConnectorType {
   File = 0;
   Kafka = 1;
