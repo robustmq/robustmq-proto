@@ -367,7 +367,7 @@ message ListSystemAlarmReply {
 message ListSystemAlarmRaw {
   string name = 1;
   string message = 2;
-  uint64 activate_at = 3;
+  int64 activate_at = 3;
   bool activated = 4;
 }
 
