@@ -48,6 +48,10 @@ service MQTTBrokerAdminService {
   // flapping detect
   rpc mqtt_broker_enable_flapping_detect(EnableFlappingDetectRequest) returns (EnableFlappingDetectReply) {}
 
+  // system alarm
+  rpc mqtt_broker_set_system_alarm_config(SetSystemAlarmConfigRequest) returns (SetSystemAlarmConfigReply) {}
+  rpc mqtt_broker_list_system_alarm(ListSystemAlarmRequest) returns (ListSystemAlarmReply) {}
+
   // connection
   rpc mqtt_broker_list_connection(ListConnectionRequest) returns (ListConnectionReply) {}
 
@@ -336,6 +340,35 @@ message ListSlowSubScribeRaw {
   string node_info = 4;
   uint64 create_time = 5;
   string sub_name = 6;
+}
+
+// --------- system alarm --------
+message SetSystemAlarmConfigRequest {
+  bool enable = 1;
+  optional float os_cpu_high_watermark = 2;
+  optional float os_cpu_low_watermark = 3;
+  optional float os_memory_high_watermark = 4;
+}
+
+message SetSystemAlarmConfigReply {
+  bool enable = 1;
+  optional float os_cpu_high_watermark = 2;
+  optional float os_cpu_low_watermark = 3;
+  optional float os_memory_high_watermark = 4;
+}
+
+message ListSystemAlarmRequest {
+}
+
+message ListSystemAlarmReply {
+  repeated ListSystemAlarmRaw list_system_alarm_raw = 1;
+}
+
+message ListSystemAlarmRaw {
+  string name = 1;
+  string message = 2;
+  int64 activate_at = 3;
+  bool activated = 4;
 }
 
 // --------- mqtt topic --------
