@@ -348,6 +348,7 @@ message SetSystemAlarmConfigRequest {
   optional float os_cpu_high_watermark = 2;
   optional float os_cpu_low_watermark = 3;
   optional float os_memory_high_watermark = 4;
+  optional float os_cpu_check_interval_ms = 5;
 }
 
 message SetSystemAlarmConfigReply {
@@ -355,6 +356,7 @@ message SetSystemAlarmConfigReply {
   optional float os_cpu_high_watermark = 2;
   optional float os_cpu_low_watermark = 3;
   optional float os_memory_high_watermark = 4;
+  optional float os_cpu_check_interval_ms = 5;
 }
 
 message ListSystemAlarmRequest {
