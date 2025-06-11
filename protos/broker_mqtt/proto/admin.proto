@@ -344,7 +344,7 @@ message ListSlowSubScribeRaw {
 
 // --------- system alarm --------
 message SetSystemAlarmConfigRequest {
-  bool enable = 1;
+  optional bool enable = 1;
   optional float os_cpu_high_watermark = 2;
   optional float os_cpu_low_watermark = 3;
   optional float os_memory_high_watermark = 4;
