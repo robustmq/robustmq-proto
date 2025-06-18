@@ -62,7 +62,7 @@ service MQTTBrokerAdminService {
   // topic rewrite rule
   rpc mqtt_broker_delete_topic_rewrite_rule(DeleteTopicRewriteRuleRequest) returns (DeleteTopicRewriteRuleReply) {}
   rpc mqtt_broker_create_topic_rewrite_rule(CreateTopicRewriteRuleRequest) returns (CreateTopicRewriteRuleReply) {}
-  rpc mqtt_broker_get_all_topic_rewrite_rule() returns
+  rpc mqtt_broker_get_all_topic_rewrite_rule(ListRewriteTopicRuleRequest) returns (ListRewriteTopicRuleReply)  {}
 
   // connector
   rpc mqtt_broker_list_connector(MqttListConnectorRequest) returns (MqttListConnectorReply) {}
