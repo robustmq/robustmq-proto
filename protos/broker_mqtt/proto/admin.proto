@@ -420,11 +420,11 @@ message CreateTopicRewriteRuleReply {}
 message ListRewriteTopicRuleRequest {}
 
 message ListRewriteTopicRuleReply {
-  repeated RewriteTopicRuleRaw rewrite_topic_rules = 1;
+  repeated MqttTopicRewriteRuleRaw rewrite_topic_rules = 1;
   uint32 total_count = 2;
 }
 
-message RewriteTopicRuleRaw {
+message MqttTopicRewriteRuleRaw {
   string source_topic = 1;
   string cluster_name = 2;
   string dest_topic = 3;

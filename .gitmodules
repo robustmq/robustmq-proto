@@ -1,0 +1,3 @@
+[submodule "robustmq-proto"]
+	path = robustmq-proto
+	url = https://github.com/3424672656/robustmq-proto.git
