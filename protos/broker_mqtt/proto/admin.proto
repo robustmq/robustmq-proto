@@ -62,6 +62,7 @@ service MQTTBrokerAdminService {
   // topic rewrite rule
   rpc mqtt_broker_delete_topic_rewrite_rule(DeleteTopicRewriteRuleRequest) returns (DeleteTopicRewriteRuleReply) {}
   rpc mqtt_broker_create_topic_rewrite_rule(CreateTopicRewriteRuleRequest) returns (CreateTopicRewriteRuleReply) {}
+  rpc mqtt_broker_get_all_topic_rewrite_rule() returns
 
   // connector
   rpc mqtt_broker_list_connector(MqttListConnectorRequest) returns (MqttListConnectorReply) {}
@@ -415,6 +416,21 @@ message CreateTopicRewriteRuleRequest {
 }
 
 message CreateTopicRewriteRuleReply {}
+
+message ListRewriteTopicRuleRequest {}
+
+message ListRewriteTopicRuleReply {
+  repeated RewriteTopicRuleRaw rewrite_topic_rules = 1;
+  uint32 total_count = 2;
+}
+
+message RewriteTopicRuleRaw {
+  string source_topic = 1;
+  string cluster_name = 2;
+  string dest_topic = 3;
+  string action = 4;
+  string regex = 5;
+}
 
 // --------- mqtt connector --------
 enum MqttConnectorType {
