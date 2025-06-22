@@ -233,7 +233,7 @@ message ListAclRequest {
 }
 
 message ListAclReply {
-  repeated bytes acls = 1;
+  repeated AclRaw acls = 1;
   uint32 total_count = 2;
 }
 
