@@ -92,7 +92,7 @@ message NodeListReply {
 message RegisterNodeRequest {
   ClusterType cluster_type = 1;
   string cluster_name = 2 [(validate.rules).string.min_len = 1];
-  string bytes node = 3;
+  bytes node = 3;
 }
 
 message RegisterNodeReply {}
