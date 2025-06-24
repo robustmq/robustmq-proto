@@ -18,21 +18,25 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     // Declare dependencies for all proto files and directories
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root.join("protos/journal_server/proto/*.proto").display()
-    );
-    println!(
-        "cargo:rerun-if-changed={}",
-        proto_root.join("protos/broker_mqtt/proto/*.proto").display()
-    );
-    println!(
-        "cargo:rerun-if-changed={}",
-        proto_root.join("protos/placement_center/proto/*.proto").display()
+        proto_root
+            .join("protos/journal_server/proto/*.proto")
+            .display()
     );
     println!(
         "cargo:rerun-if-changed={}",
         proto_root
-            .join("protos/vendor/validate/*.proto")
+            .join("protos/broker_mqtt/proto/*.proto")
             .display()
+    );
+    println!(
+        "cargo:rerun-if-changed={}",
+        proto_root
+            .join("protos/placement_center/proto/*.proto")
+            .display()
+    );
+    println!(
+        "cargo:rerun-if-changed={}",
+        proto_root.join("protos/vendor/validate/*.proto").display()
     );
 
     // Journal Engine
@@ -55,10 +59,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
                 .to_str()
                 .unwrap(),
         ],
-        &[proto_root
-            .join("protos/")
-            .to_str()
-            .unwrap()],
+        &[proto_root.join("protos/").to_str().unwrap()],
     )?;
 
     // MQTT Broker
@@ -73,10 +74,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
                 .to_str()
                 .unwrap(),
         ],
-        &[proto_root
-            .join("protos/")
-            .to_str()
-            .unwrap()],
+        &[proto_root.join("protos/").to_str().unwrap()],
     )?;
 
     // Placement Center
@@ -110,12 +108,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
                 .to_str()
                 .unwrap(),
         ],
-        &[
-            proto_root
-                .join("protos/")
-                .to_str()
-                .unwrap(),
-        ],
+        &[proto_root.join("protos/").to_str().unwrap()],
     )?;
     Ok(())
 }

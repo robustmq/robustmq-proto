@@ -92,7 +92,7 @@ message NodeListReply {
 message RegisterNodeRequest {
   ClusterType cluster_type = 1;
   string cluster_name = 2 [(validate.rules).string.min_len = 1];
-  string node_ip = 3 [(validate.rules).string.min_len = 1];
+  string node_ip = 3 [(validate.rules).string = {min_len: 1, ip: true}];
   uint64 node_id = 4 [(validate.rules).uint64.gte = 0];
   string node_inner_addr = 5 [(validate.rules).string.min_len = 1];
   string extend_info = 6;
@@ -165,7 +165,7 @@ message DeleteResourceConfigReply {}
 
 message SetIdempotentDataRequest {
   string cluster_name = 1 [(validate.rules).string.min_len = 1];
-  string producer_id = 2;
+  string producer_id = 2 [(validate.rules).string.min_len = 1];
   uint64 seq_num = 3;
 }
 
@@ -173,7 +173,7 @@ message SetIdempotentDataReply {}
 
 message ExistsIdempotentDataRequest {
   string cluster_name = 1 [(validate.rules).string.min_len = 1];
-  string producer_id = 2;
+  string producer_id = 2 [(validate.rules).string.min_len = 1];
   uint64 seq_num = 3;
 }
 
@@ -183,7 +183,7 @@ message ExistsIdempotentDataReply {
 
 message DeleteIdempotentDataRequest {
   string cluster_name = 1 [(validate.rules).string.min_len = 1];
-  string producer_id = 2;
+  string producer_id = 2 [(validate.rules).string.min_len = 1];
   uint64 seq_num = 3;
 }
 

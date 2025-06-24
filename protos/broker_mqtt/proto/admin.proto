@@ -48,6 +48,10 @@ service MQTTBrokerAdminService {
   // flapping detect
   rpc mqtt_broker_enable_flapping_detect(EnableFlappingDetectRequest) returns (EnableFlappingDetectReply) {}
 
+  // system alarm
+  rpc mqtt_broker_set_system_alarm_config(SetSystemAlarmConfigRequest) returns (SetSystemAlarmConfigReply) {}
+  rpc mqtt_broker_list_system_alarm(ListSystemAlarmRequest) returns (ListSystemAlarmReply) {}
+
   // connection
   rpc mqtt_broker_list_connection(ListConnectionRequest) returns (ListConnectionReply) {}
 
@@ -58,6 +62,7 @@ service MQTTBrokerAdminService {
   // topic rewrite rule
   rpc mqtt_broker_delete_topic_rewrite_rule(DeleteTopicRewriteRuleRequest) returns (DeleteTopicRewriteRuleReply) {}
   rpc mqtt_broker_create_topic_rewrite_rule(CreateTopicRewriteRuleRequest) returns (CreateTopicRewriteRuleReply) {}
+  rpc mqtt_broker_get_all_topic_rewrite_rule(ListRewriteTopicRuleRequest) returns (ListRewriteTopicRuleReply)  {}
 
   // connector
   rpc mqtt_broker_list_connector(MqttListConnectorRequest) returns (MqttListConnectorReply) {}
@@ -338,6 +343,37 @@ message ListSlowSubScribeRaw {
   string sub_name = 6;
 }
 
+// --------- system alarm --------
+message SetSystemAlarmConfigRequest {
+  optional bool enable = 1;
+  optional float os_cpu_high_watermark = 2;
+  optional float os_cpu_low_watermark = 3;
+  optional float os_memory_high_watermark = 4;
+  optional uint64 os_cpu_check_interval_ms = 5;
+}
+
+message SetSystemAlarmConfigReply {
+  bool enable = 1;
+  optional float os_cpu_high_watermark = 2;
+  optional float os_cpu_low_watermark = 3;
+  optional float os_memory_high_watermark = 4;
+  optional uint64 os_cpu_check_interval_ms = 5;
+}
+
+message ListSystemAlarmRequest {
+}
+
+message ListSystemAlarmReply {
+  repeated ListSystemAlarmRaw list_system_alarm_raw = 1;
+}
+
+message ListSystemAlarmRaw {
+  string name = 1;
+  string message = 2;
+  int64 activate_at = 3;
+  bool activated = 4;
+}
+
 // --------- mqtt topic --------
 message ListTopicRequest {
   optional string topic_name = 1;
@@ -380,6 +416,21 @@ message CreateTopicRewriteRuleRequest {
 }
 
 message CreateTopicRewriteRuleReply {}
+
+message ListRewriteTopicRuleRequest {}
+
+message ListRewriteTopicRuleReply {
+  repeated MqttTopicRewriteRuleRaw rewrite_topic_rules = 1;
+  uint32 total_count = 2;
+}
+
+message MqttTopicRewriteRuleRaw {
+  string source_topic = 1;
+  string cluster_name = 2;
+  string dest_topic = 3;
+  string action = 4;
+  string regex = 5;
+}
 
 // --------- mqtt connector --------
 enum MqttConnectorType {
