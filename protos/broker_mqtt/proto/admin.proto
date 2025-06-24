@@ -233,36 +233,8 @@ message ListAclRequest {
 }
 
 message ListAclReply {
-  repeated AclRaw acls = 1;
+  repeated bytes acls = 1;
   uint32 total_count = 2;
-}
-
-message AclRaw {
-  AclResourceType resource_type = 1;
-  string resource_name = 2;
-  string topic = 3;
-  string ip = 4;
-  AclAction action = 5;
-  AclPermission permission = 6;
-}
-
-enum AclResourceType {
-  ClientId = 0;
-  User = 1;
-}
-
-enum AclAction {
-  All = 0;
-  Subscribe = 1;
-  Publish = 2;
-  PubSub = 3;
-  Retain = 4;
-  Qos = 5;
-}
-
-enum AclPermission {
-  Allow = 0;
-  Deny = 1;
 }
 
 message DeleteAclRequest {
