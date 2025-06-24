@@ -351,7 +351,7 @@ message ListTopicRequest {
 
 message ListTopicReply {
   // stream topics
-  repeated bytes topics = 1;
+  bytes topic = 1;
 }
 
 message CreateTopicRequest {
