@@ -23,6 +23,7 @@ service MQTTBrokerAdminService {
 
   // cluster
   rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
+  rpc cluster_overview_metrics(ClusterOverviewMetricsRequest) returns (ClusterOverviewMetricsReply) {}
 
   // user
   rpc mqtt_broker_create_user(CreateUserRequest) returns (CreateUserReply) {}
@@ -177,6 +178,20 @@ message BrokerNodeRaw {
   string node_inner_addr = 6;
   uint64 start_time = 7;
   uint64 register_time = 8;
+}
+
+message ClusterOverviewMetricsRequest{
+  uint64 start_time = 1;
+  uint64 end_time = 2;
+}
+
+message ClusterOverviewMetricsReply {
+  string connection_num = 1;
+  string topic_num = 2;
+  string subscribe_num = 3;
+  string message_in_num = 4;
+  string message_out_num = 5;
+  string message_drop_num = 6;
 }
 
 // ---------- client --------
