@@ -163,7 +163,8 @@ message ClusterStatusReply {
   uint32 websocket_connection_num = 14;
   uint32 quic_connection_num = 15;
   uint32 exclusive_subscribe_thread_num = 16;
-  uint32 share_subscribe_thread_num = 17;
+  uint32 share_subscribe_leader_thread_num = 17;
+  uint32 share_subscribe_folower_thread_num = 18;
 }
 
 message BrokerNodeRaw {
