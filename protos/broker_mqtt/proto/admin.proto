@@ -162,6 +162,8 @@ message ClusterStatusReply {
   uint32 tls_connection_num = 13;
   uint32 websocket_connection_num = 14;
   uint32 quic_connection_num = 15;
+  uint32 exclusive_subscribe_thread_num = 16;
+  uint32 share_subscribe_thread_num = 17;
 }
 
 message BrokerNodeRaw {
