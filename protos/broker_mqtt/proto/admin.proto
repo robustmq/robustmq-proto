@@ -156,7 +156,7 @@ message ClusterStatusReply {
   uint32 exclusive_subscribe_num = 7;
   uint32 share_subscribe_num = 8;
   uint32 topic_num = 9;
-  repeated string nodes = 10;
+  repeated BrokerNodeRaw nodes = 10;
   string placement_status = 11;
   uint32 tcp_connection_num = 12;
   uint32 tls_connection_num = 13;
