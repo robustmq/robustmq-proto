@@ -83,9 +83,6 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_set_auto_subscribe_rule(SetAutoSubscribeRuleRequest) returns (SetAutoSubscribeRuleReply) {}
   rpc mqtt_broker_delete_auto_subscribe_rule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
   rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
-
-  // subscribe
-  rpc mqtt_broker_list_subscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
 }
 
 // --------- common -----------
@@ -585,15 +582,3 @@ message DeleteAutoSubscribeRuleRequest {
 }
 
 message DeleteAutoSubscribeRuleReply {}
-
-// --------- subscribe  --------
-message ListSubscribeRequest {}
-
-message ListSubscribeReply {
-  repeated MqttSubscribeRaw subscriptions = 1;
-}
-
-message MqttSubscribeRaw {
-  string client_id = 1;
-  string path = 2;
-}
