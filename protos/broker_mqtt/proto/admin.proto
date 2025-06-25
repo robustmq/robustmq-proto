@@ -145,10 +145,30 @@ message GetClusterConfigReply {
 }
 
 message ClusterStatusRequest {}
+
 message ClusterStatusReply {
   string cluster_name = 1;
-  repeated string nodes = 2;
-  string subscribe_info = 3;
+  uint32 message_in_rate = 2;
+  uint32 message_out_rate = 3;
+  uint32 connection_num = 4;
+  uint32 session_num = 5;
+  uint32 subscribe_num = 6;
+  uint32 exclusive_subscribe_num = 7;
+  uint32 share_subscribe_num = 8;
+  uint32 topic_num = 9;
+  repeated string nodes = 10;
+  string placement_status = 11;
+}
+
+message BrokerNodeRaw {
+  string cluster_name = 1;
+  string cluster_type = 2;
+  string extend_info = 3;
+  uint64 node_id = 4;
+  string node_ip = 5;
+  string node_inner_addr = 6;
+  string start_time = 7;
+  string register_time = 8;
 }
 
 // ---------- client --------
