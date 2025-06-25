@@ -158,6 +158,10 @@ message ClusterStatusReply {
   uint32 topic_num = 9;
   repeated string nodes = 10;
   string placement_status = 11;
+  uint32 tcp_connection_num = 12;
+  uint32 tls_connection_num = 13;
+  uint32 websocket_connection_num = 14;
+  uint32 quic_connection_num = 15;
 }
 
 message BrokerNodeRaw {
