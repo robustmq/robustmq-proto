@@ -148,10 +148,38 @@ message GetClusterConfigReply {
 }
 
 message ClusterStatusRequest {}
+
 message ClusterStatusReply {
   string cluster_name = 1;
-  repeated string nodes = 2;
-  string subscribe_info = 3;
+  uint32 message_in_rate = 2;
+  uint32 message_out_rate = 3;
+  uint32 connection_num = 4;
+  uint32 session_num = 5;
+  uint32 topic_num = 6;
+  repeated BrokerNodeRaw nodes = 7;
+  string placement_status = 8;
+  uint32 tcp_connection_num = 9;
+  uint32 tls_connection_num = 10;
+  uint32 websocket_connection_num = 11;
+  uint32 quic_connection_num = 12;
+  uint32 subscribe_num = 13;
+  uint32 exclusive_subscribe_num = 14;
+  uint32 share_subscribe_leader_num = 15;
+  uint32 share_subscribe_resub_num = 16;
+  uint32 exclusive_subscribe_thread_num = 17;
+  uint32 share_subscribe_leader_thread_num = 18;
+  uint32 share_subscribe_follower_thread_num = 19;
+}
+
+message BrokerNodeRaw {
+  string cluster_name = 1;
+  string cluster_type = 2;
+  string extend_info = 3;
+  uint64 node_id = 4;
+  string node_ip = 5;
+  string node_inner_addr = 6;
+  uint64 start_time = 7;
+  uint64 register_time = 8;
 }
 
 // ---------- client --------
