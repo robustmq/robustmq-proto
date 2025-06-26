@@ -98,8 +98,8 @@ service MqttService {
   // - `topic_name: String`: The name of the topic.
   //
   //Returns:
-  // - `topics: Vec<Vec<u8>>`: It's the result of encoding a `Vec<MQTTTopic>` into a binary format.
-  rpc ListTopic(ListTopicRequest) returns (ListTopicReply) {}
+  // - stream
+  rpc ListTopic(ListTopicRequest) returns (stream ListTopicReply) {}
 
   //Creates the corresponding topic based on the request
   //
@@ -350,8 +350,8 @@ message ListTopicRequest {
 }
 
 message ListTopicReply {
-  //The parameter contains a list of topics, encoded from a `Vec<MQTTTopic>` into a binary format.
-  repeated bytes topics = 1;
+  // stream topics
+  bytes topic = 1;
 }
 
 message CreateTopicRequest {
