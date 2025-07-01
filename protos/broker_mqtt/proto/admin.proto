@@ -176,8 +176,8 @@ message BrokerNodeRaw {
   uint64 node_id = 4;
   string node_ip = 5;
   string node_inner_addr = 6;
-  uint64 start_time = 7;
-  uint64 register_time = 8;
+  string start_time = 7;
+  string register_time = 8;
 }
 
 message ClusterOverviewMetricsRequest{
