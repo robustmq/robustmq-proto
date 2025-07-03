@@ -198,20 +198,6 @@ message ClusterOverviewMetricsReply {
   string message_drop_num = 6;
 }
 
-message ClusterOverviewMetricsRequest{
-  uint64 start_time = 1;
-  uint64 end_time = 2;
-}
-
-message ClusterOverviewMetricsReply {
-  string connection_num = 1;
-  string topic_num = 2;
-  string subscribe_num = 3;
-  string message_in_num = 4;
-  string message_out_num = 5;
-  string message_drop_num = 6;
-}
-
 // ---------- client --------
 message ListClientRequest {
   optional QueryOptions options = 1;
