@@ -624,10 +624,12 @@ message MqttSubscribeRaw {
   string create_time = 9;
   uint32 pk_id = 10;
   string properties = 11;
+  bool is_share_sub = 12;
 }
 
 message SubscribeDetailRequest{
-
+  string client_id = 1;
+  string path = 2;
 }
 
 message SubscribeDetailReply{
