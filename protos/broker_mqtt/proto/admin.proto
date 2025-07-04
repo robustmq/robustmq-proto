@@ -603,7 +603,9 @@ message DeleteAutoSubscribeRuleRequest {
 message DeleteAutoSubscribeRuleReply {}
 
 // --------- subscribe  --------
-message ListSubscribeRequest {}
+message ListSubscribeRequest {
+  optional QueryOptions options = 1;
+}
 
 message ListSubscribeReply {
   repeated MqttSubscribeRaw subscriptions = 1;
