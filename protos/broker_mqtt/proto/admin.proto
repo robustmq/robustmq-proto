@@ -87,6 +87,7 @@ service MQTTBrokerAdminService {
 
   // subscribe
   rpc mqtt_broker_list_subscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
+  rpc mqtt_broker_subscribe_detail(SubscribeDetailRequest) returns (SubscribeDetailReply) {}
 }
 
 // --------- common -----------
@@ -611,4 +612,26 @@ message ListSubscribeReply {
 message MqttSubscribeRaw {
   string client_id = 1;
   string path = 2;
+  uint64 broker_id = 3;
+  string protocol = 4;
+  string qos = 5;
+  uint32 no_local = 6;
+  uint32 preserve_retain = 7;
+  string retain_handling = 8;
+  string create_time = 9;
+  uint32 pk_id = 10;
+  string properties = 11;
+}
+
+message SubscribeDetailRequest{
+
+}
+
+message SubscribeDetailReply{
+    repeated MqttSubscribeDetailRaw details = 1;
+}
+
+message MqttSubscribeDetailRaw {
+    string sub_detail = 1;
+    string thread_detail = 2;
 }
