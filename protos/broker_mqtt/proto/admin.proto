@@ -633,6 +633,11 @@ message SubscribeDetailRequest{
 }
 
 message SubscribeDetailReply{
-    string sub_detail = 1;
-    repeated string thread_detail = 2;
+    string sub_info = 1;
+    repeated SubscribeDetailRaw details = 2;
+}
+
+message SubscribeDetailRaw{
+    string sub = 1;
+    string thread = 2;
 }
