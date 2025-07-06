@@ -84,9 +84,6 @@ service MQTTBrokerAdminService {
   rpc SetAutoSubscribeRule(SetAutoSubscribeRuleRequest) returns (SetAutoSubscribeRuleReply) {}
   rpc DeleteAutoSubscribeRule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
   rpc ListAutoSubscribeRule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
-  rpc mqtt_broker_set_auto_subscribe_rule(SetAutoSubscribeRuleRequest) returns (SetAutoSubscribeRuleReply) {}
-  rpc mqtt_broker_delete_auto_subscribe_rule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
-  rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
 
   // subscribe
   rpc ListSubscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
