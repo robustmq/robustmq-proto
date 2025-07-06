@@ -89,8 +89,8 @@ service MQTTBrokerAdminService {
   rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
 
   // subscribe
-  rpc mqtt_broker_list_subscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
-  rpc mqtt_broker_subscribe_detail(SubscribeDetailRequest) returns (SubscribeDetailReply) {}
+  rpc ListSubscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
+  rpc GetSubscribeDetail(SubscribeDetailRequest) returns (SubscribeDetailReply) {}
 }
 
 // --------- common -----------
