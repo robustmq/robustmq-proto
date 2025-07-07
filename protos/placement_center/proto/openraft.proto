@@ -18,15 +18,15 @@ syntax = "proto3";
 package placement.center.openraft;
 
 service OpenRaftService {
-  rpc vote(VoteRequest) returns (VoteReply) {}
+  rpc Vote(VoteRequest) returns (VoteReply) {}
 
-  rpc append(AppendRequest) returns (AppendReply) {}
+  rpc Append(AppendRequest) returns (AppendReply) {}
 
-  rpc snapshot(SnapshotRequest) returns (SnapshotReply) {}
+  rpc Snapshot(SnapshotRequest) returns (SnapshotReply) {}
 
-  rpc add_learner(AddLearnerRequest) returns (AddLearnerReply) {}
+  rpc AddLearner(AddLearnerRequest) returns (AddLearnerReply) {}
 
-  rpc change_membership(ChangeMembershipRequest) returns (ChangeMembershipReply) {}
+  rpc ChangeMembership(ChangeMembershipRequest) returns (ChangeMembershipReply) {}
 }
 
 message VoteRequest {
