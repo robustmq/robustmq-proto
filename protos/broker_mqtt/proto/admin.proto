@@ -369,10 +369,12 @@ message EnableFlappingDetectReply {
 }
 
 message ListFlappingDetectRequest {
+  optional QueryOptions options = 1;
 }
 
 message ListFlappingDetectReply {
   ListFlappingDetectRaw list_flapping_detect_raw = 1;
+  uint32 total_count = 2;
 }
 
 message ListFlappingDetectRaw {
@@ -648,11 +650,11 @@ message SubscribeDetailRequest{
 }
 
 message SubscribeDetailReply{
-    string sub_info = 1;
-    repeated SubscribeDetailRaw details = 2;
+  string sub_info = 1;
+  repeated SubscribeDetailRaw details = 2;
 }
 
 message SubscribeDetailRaw{
-    string sub = 1;
-    string thread = 2;
+  string sub = 1;
+  string thread = 2;
 }
