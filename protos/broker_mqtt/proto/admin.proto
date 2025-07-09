@@ -48,7 +48,7 @@ service MQTTBrokerAdminService {
 
   // flapping detect
   rpc EnableFlappingDetect(EnableFlappingDetectRequest) returns (EnableFlappingDetectReply) {}
-  rpc ListFlappingDetect(ListFlappingDetectRequest) returns (stream ListFlappingDetectReply) {}
+  rpc ListFlappingDetect(ListFlappingDetectRequest) returns (ListFlappingDetectReply) {}
 
   // system alarm
   rpc SetSystemAlarmConfig(SetSystemAlarmConfigRequest) returns (SetSystemAlarmConfigReply) {}
