@@ -416,10 +416,10 @@ message GetTopicRetainMessageRequest {
 
 message GetTopicRetainMessageReply {
   //The parameter contains retain message, encoded from a `MQTTMessage` object into a binary format.
-  bytes retain_message = 1;
+  optional bytes retain_message = 1;
 
   //The parameter is the expiration time of the retain message. The unit is seconds.
-  uint64 retain_message_expired_at = 2;
+  optional uint64 retain_message_expired_at = 2;
 }
 
 message ListSessionRequest {
