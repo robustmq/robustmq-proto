@@ -18,17 +18,17 @@ syntax = "proto3";
 package placement.center.kv;
 
 service KvService {
-  rpc set(SetRequest) returns (SetReply) {}
+  rpc Set(SetRequest) returns (SetReply) {}
 
-  rpc delete(DeleteRequest) returns (DeleteReply) {}
+  rpc Delete(DeleteRequest) returns (DeleteReply) {}
 
-  rpc get(GetRequest) returns (GetReply) {}
+  rpc Get(GetRequest) returns (GetReply) {}
 
-  rpc exists(ExistsRequest) returns (ExistsReply) {}
+  rpc Exists(ExistsRequest) returns (ExistsReply) {}
 
-  rpc list_shard(ListShardRequest) returns (ListShardReply) {}
+  rpc ListShard(ListShardRequest) returns (ListShardReply) {}
 
-  rpc get_prefix(GetPrefixRequest) returns (GetPrefixReply) {}
+  rpc GetPrefix(GetPrefixRequest) returns (GetPrefixReply) {}
 }
 
 message SetRequest {
