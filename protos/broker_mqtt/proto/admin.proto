@@ -519,7 +519,7 @@ message ConnectorRaw {
   optional uint64 broker_id = 9;
 }
 
-enum ConnectorStatus {
+enum MQTTStatus {
   idle = 0;
   running = 1;
 }
