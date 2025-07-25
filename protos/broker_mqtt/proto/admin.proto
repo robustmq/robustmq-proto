@@ -509,7 +509,7 @@ message ListConnectorReply {
 
 message ConnectorRaw {
   string connector_name = 1;
-  MQTTStatus status = 2;
+  MqttStatus status = 2;
   ConnectorType connector_type = 3;
   string topic_id = 4;
   string cluster_name = 5;
@@ -519,7 +519,7 @@ message ConnectorRaw {
   optional uint64 broker_id = 9;
 }
 
-enum MQTTStatus {
+enum MqttStatus {
   idle = 0;
   running = 1;
 }
