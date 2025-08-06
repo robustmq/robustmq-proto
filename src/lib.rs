@@ -107,6 +107,10 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
                 .join("protos/placement_center/proto/openraft.proto")
                 .to_str()
                 .unwrap(),
+            proto_root
+                .join("protos/placement_center/proto/cluster.proto")
+                .to_str()
+                .unwrap(),
         ],
         &[proto_root.join("protos/").to_str().unwrap()],
     )?;
