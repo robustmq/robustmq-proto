@@ -18,76 +18,77 @@ syntax = "proto3";
 package broker.mqtt.admin;
 service MQTTBrokerAdminService {
   // common
-  rpc mqtt_broker_set_cluster_config(SetClusterConfigRequest) returns (SetClusterConfigReply) {}
-  rpc mqtt_broker_get_cluster_config(GetClusterConfigRequest) returns (GetClusterConfigReply) {}
+  rpc SetClusterConfig(SetClusterConfigRequest) returns (SetClusterConfigReply) {}
+  rpc GetClusterConfig(GetClusterConfigRequest) returns (GetClusterConfigReply) {}
 
   // cluster
-  rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
-  rpc cluster_overview_metrics(ClusterOverviewMetricsRequest) returns (ClusterOverviewMetricsReply) {}
+  rpc ClusterStatus(ClusterStatusRequest) returns (ClusterStatusReply) {}
+  rpc ClusterOverviewMetrics(ClusterOverviewMetricsRequest) returns (ClusterOverviewMetricsReply) {}
 
   // user
-  rpc mqtt_broker_create_user(CreateUserRequest) returns (CreateUserReply) {}
-  rpc mqtt_broker_delete_user(DeleteUserRequest) returns (DeleteUserReply) {}
-  rpc mqtt_broker_list_user(ListUserRequest) returns (ListUserReply) {}
+  rpc CreateUser(CreateUserRequest) returns (CreateUserReply) {}
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserReply) {}
+  rpc ListUser(ListUserRequest) returns (ListUserReply) {}
 
   // client
-  rpc mqtt_broker_list_client(ListClientRequest) returns (ListClientReply) {}
+  rpc ListClient(ListClientRequest) returns (ListClientReply) {}
 
   // session
-  rpc mqtt_broker_list_session(ListSessionRequest) returns (ListSessionReply) {}
+  rpc ListSession(ListSessionRequest) returns (ListSessionReply) {}
 
   // acl
-  rpc mqtt_broker_list_acl(ListAclRequest) returns (ListAclReply) {}
-  rpc mqtt_broker_create_acl(CreateAclRequest) returns (CreateAclReply) {}
-  rpc mqtt_broker_delete_acl(DeleteAclRequest) returns (DeleteAclReply) {}
+  rpc ListAcl(ListAclRequest) returns (ListAclReply) {}
+  rpc CreateAcl(CreateAclRequest) returns (CreateAclReply) {}
+  rpc DeleteAcl(DeleteAclRequest) returns (DeleteAclReply) {}
 
   // blacklist
-  rpc mqtt_broker_list_blacklist(ListBlacklistRequest) returns (ListBlacklistReply) {}
-  rpc mqtt_broker_delete_blacklist(DeleteBlacklistRequest) returns (DeleteBlacklistReply) {}
-  rpc mqtt_broker_create_blacklist(CreateBlacklistRequest) returns (CreateBlacklistReply) {}
+  rpc ListBlacklist(ListBlacklistRequest) returns (ListBlacklistReply) {}
+  rpc DeleteBlacklist(DeleteBlacklistRequest) returns (DeleteBlacklistReply) {}
+  rpc CreateBlacklist(CreateBlacklistRequest) returns (CreateBlacklistReply) {}
 
   // flapping detect
-  rpc mqtt_broker_enable_flapping_detect(EnableFlappingDetectRequest) returns (EnableFlappingDetectReply) {}
+  rpc EnableFlappingDetect(EnableFlappingDetectRequest) returns (EnableFlappingDetectReply) {}
+  rpc ListFlappingDetect(ListFlappingDetectRequest) returns (ListFlappingDetectReply) {}
 
   // system alarm
-  rpc mqtt_broker_set_system_alarm_config(SetSystemAlarmConfigRequest) returns (SetSystemAlarmConfigReply) {}
-  rpc mqtt_broker_list_system_alarm(ListSystemAlarmRequest) returns (ListSystemAlarmReply) {}
+  rpc SetSystemAlarmConfig(SetSystemAlarmConfigRequest) returns (SetSystemAlarmConfigReply) {}
+  rpc ListSystemAlarm(ListSystemAlarmRequest) returns (ListSystemAlarmReply) {}
 
   // connection
-  rpc mqtt_broker_list_connection(ListConnectionRequest) returns (ListConnectionReply) {}
+  rpc ListConnection(ListConnectionRequest) returns (ListConnectionReply) {}
 
   // observability: slow-sub
-  rpc mqtt_broker_list_slow_subscribe(ListSlowSubscribeRequest) returns (ListSlowSubscribeReply) {}
-  rpc mqtt_broker_list_topic(ListTopicRequest) returns (ListTopicReply) {}
+  rpc ListSlowSubscribe(ListSlowSubscribeRequest) returns (ListSlowSubscribeReply) {}
+  rpc ListTopic(ListTopicRequest) returns (ListTopicReply) {}
 
   // topic rewrite rule
-  rpc mqtt_broker_delete_topic_rewrite_rule(DeleteTopicRewriteRuleRequest) returns (DeleteTopicRewriteRuleReply) {}
-  rpc mqtt_broker_create_topic_rewrite_rule(CreateTopicRewriteRuleRequest) returns (CreateTopicRewriteRuleReply) {}
-  rpc mqtt_broker_get_all_topic_rewrite_rule(ListRewriteTopicRuleRequest) returns (ListRewriteTopicRuleReply)  {}
+  rpc DeleteTopicRewriteRule(DeleteTopicRewriteRuleRequest) returns (DeleteTopicRewriteRuleReply) {}
+  rpc CreateTopicRewriteRule(CreateTopicRewriteRuleRequest) returns (CreateTopicRewriteRuleReply) {}
+  rpc GetAllTopicRewriteRule(ListRewriteTopicRuleRequest) returns (ListRewriteTopicRuleReply)  {}
 
   // connector
-  rpc mqtt_broker_list_connector(MqttListConnectorRequest) returns (MqttListConnectorReply) {}
-  rpc mqtt_broker_create_connector(MqttCreateConnectorRequest) returns (MqttCreateConnectorReply) {}
-  rpc mqtt_broker_delete_connector(MqttDeleteConnectorRequest) returns (MqttDeleteConnectorReply) {}
-  rpc mqtt_broker_update_connector(MqttUpdateConnectorRequest) returns (MqttUpdateConnectorReply) {}
+  rpc ListConnector(ListConnectorRequest) returns (ListConnectorReply) {}
+  rpc CreateConnector(CreateConnectorRequest) returns (CreateConnectorReply) {}
+  rpc DeleteConnector(DeleteConnectorRequest) returns (DeleteConnectorReply) {}
+  rpc UpdateConnector(UpdateConnectorRequest) returns (UpdateConnectorReply) {}
 
   // schema
-  rpc mqtt_broker_list_schema(MqttListSchemaRequest) returns (MqttListSchemaReply) {}
-  rpc mqtt_broker_create_schema(MqttCreateSchemaRequest) returns (MqttCreateSchemaReply) {}
-  rpc mqtt_broker_update_schema(MqttUpdateSchemaRequest) returns (MqttUpdateSchemaReply) {}
-  rpc mqtt_broker_delete_schema(MqttDeleteSchemaRequest) returns (MqttDeleteSchemaReply) {}
-  rpc mqtt_broker_list_bind_schema(MqttListBindSchemaRequest) returns (MqttListBindSchemaReply) {}
-  rpc mqtt_broker_bind_schema(MqttBindSchemaRequest) returns (MqttBindSchemaReply) {}
-  rpc mqtt_broker_unbind_schema(MqttUnbindSchemaRequest) returns (MqttUnbindSchemaReply) {}
+  rpc ListSchema(ListSchemaRequest) returns (ListSchemaReply) {}
+  rpc CreateSchema(CreateSchemaRequest) returns (CreateSchemaReply) {}
+  rpc UpdateSchema(UpdateSchemaRequest) returns (UpdateSchemaReply) {}
+  rpc DeleteSchema(DeleteSchemaRequest) returns (DeleteSchemaReply) {}
+  rpc ListBindSchema(ListBindSchemaRequest) returns (ListBindSchemaReply) {}
+  rpc BindSchema(BindSchemaRequest) returns (BindSchemaReply) {}
+  rpc UnbindSchema(UnbindSchemaRequest) returns (UnbindSchemaReply) {}
 
   // auto subscribe
-  rpc mqtt_broker_set_auto_subscribe_rule(SetAutoSubscribeRuleRequest) returns (SetAutoSubscribeRuleReply) {}
-  rpc mqtt_broker_delete_auto_subscribe_rule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
-  rpc mqtt_broker_list_auto_subscribe_rule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
+  rpc SetAutoSubscribeRule(SetAutoSubscribeRuleRequest) returns (SetAutoSubscribeRuleReply) {}
+  rpc DeleteAutoSubscribeRule(DeleteAutoSubscribeRuleRequest) returns (DeleteAutoSubscribeRuleReply) {}
+  rpc ListAutoSubscribeRule(ListAutoSubscribeRuleRequest) returns (ListAutoSubscribeRuleReply) {}
 
   // subscribe
-  rpc mqtt_broker_list_subscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
-  rpc mqtt_broker_subscribe_detail(SubscribeDetailRequest) returns (SubscribeDetailReply) {}
+  rpc ListSubscribe(ListSubscribeRequest) returns (ListSubscribeReply) {}
+  rpc GetSubscribeDetail(SubscribeDetailRequest) returns (SubscribeDetailReply) {}
 }
 
 // --------- common -----------
@@ -367,6 +368,22 @@ message EnableFlappingDetectReply {
   bool is_enable = 1;
 }
 
+message ListFlappingDetectRequest {
+  optional QueryOptions options = 1;
+}
+
+message ListFlappingDetectReply {
+  repeated FlappingDetectRaw flapping_detect_raw = 1;
+  uint32 total_count = 2;
+}
+
+message FlappingDetectRaw {
+  string client_id = 1;
+  uint64 before_last_windows_connections = 2;
+  uint64 first_request_time = 3;
+}
+
+
 // --------- observability service --------
 // --------- slow subscribe feature -------
 message ListSlowSubscribeRequest {
@@ -480,94 +497,114 @@ message MqttTopicRewriteRuleRaw {
 }
 
 // --------- mqtt connector --------
-enum MqttConnectorType {
+message ListConnectorRequest {
+  string connector_name = 1;
+  optional QueryOptions options = 2;
+}
+
+message ListConnectorReply {
+  repeated ConnectorRaw connectors = 1;
+  uint32 total_count = 2;
+}
+
+message ConnectorRaw {
+  string connector_name = 1;
+  MqttStatus status = 2;
+  ConnectorType connector_type = 3;
+  string topic_id = 4;
+  string cluster_name = 5;
+  uint64 create_time = 6;
+  uint64 update_time = 7; 
+  string config = 8;
+  optional uint64 broker_id = 9;
+}
+
+enum MqttStatus {
+  idle = 0;
+  running = 1;
+}
+
+enum ConnectorType {
   File = 0;
   Kafka = 1;
 }
-message MqttListConnectorRequest {
-  string connector_name = 1;
-}
 
-message MqttListConnectorReply {
-  repeated bytes connectors = 1;
-}
-
-message MqttCreateConnectorRequest {
+message CreateConnectorRequest {
   string connector_name = 1;
-  MqttConnectorType connector_type = 2;
+  ConnectorType connector_type = 2;
   string config = 3;
   string topic_id = 4;
 }
 
-message MqttCreateConnectorReply {}
+message CreateConnectorReply {}
 
-message MqttDeleteConnectorRequest {
+message DeleteConnectorRequest {
   string connector_name = 1;
 }
 
-message MqttDeleteConnectorReply {}
+message DeleteConnectorReply {}
 
-message MqttUpdateConnectorRequest {
+message UpdateConnectorRequest {
   bytes connector = 1;
 }
 
-message MqttUpdateConnectorReply {}
+message UpdateConnectorReply {}
 
 // --------- mqtt schema --------
-message MqttListSchemaRequest {
+message ListSchemaRequest {
   string schema_name = 1;
 }
 
-message MqttListSchemaReply {
+message ListSchemaReply {
   repeated bytes schemas = 1;
 }
 
-message MqttCreateSchemaRequest {
+message CreateSchemaRequest {
   string schema_name = 1;
   string schema_type = 2;
   string schema = 3;
   string desc = 4;
 }
 
-message MqttCreateSchemaReply {}
+message CreateSchemaReply {}
 
-message MqttUpdateSchemaRequest {
+message UpdateSchemaRequest {
   string schema_name = 1;
   string schema_type = 2;
   string schema = 3;
   string desc = 4;
 }
 
-message MqttUpdateSchemaReply {}
+message UpdateSchemaReply {}
 
-message MqttDeleteSchemaRequest {
+message DeleteSchemaRequest {
   string schema_name = 1;
 }
 
-message MqttDeleteSchemaReply {}
+message DeleteSchemaReply {}
 
-message MqttListBindSchemaRequest {
+message ListBindSchemaRequest {
   string schema_name = 1;
   string resource_name = 2;
 }
 
-message MqttListBindSchemaReply {
+message ListBindSchemaReply {
   repeated bytes schema_binds = 1;
 }
 
-message MqttBindSchemaRequest {
+message BindSchemaRequest {
   string schema_name = 1;
   string resource_name = 2;
 }
 
-message MqttBindSchemaReply {}
+message BindSchemaReply {}
 
-message MqttUnbindSchemaRequest {
+message UnbindSchemaRequest {
   string schema_name = 1;
   string resource_name = 2;
 }
 
-message MqttUnbindSchemaReply {}
+message UnbindSchemaReply {}
 
 // --------- auto subscribe --------
 message ListAutoSubscribeRuleRequest {}
@@ -633,11 +670,11 @@ message SubscribeDetailRequest{
 }
 
 message SubscribeDetailReply{
-    string sub_info = 1;
-    repeated SubscribeDetailRaw details = 2;
+  string sub_info = 1;
+  repeated SubscribeDetailRaw details = 2;
 }
 
 message SubscribeDetailRaw{
-    string sub = 1;
-    string thread = 2;
+  string sub = 1;
+  string thread = 2;
 }
