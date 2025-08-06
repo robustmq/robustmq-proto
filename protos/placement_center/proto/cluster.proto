@@ -1,0 +1,8 @@
+service ClusterService {
+    rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
+}
+
+message ClusterStatusRequest {}
+
+message ClusterStatusReply {
+}
