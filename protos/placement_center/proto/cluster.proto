@@ -1,3 +1,6 @@
+syntax = "proto3";
+package broker.cluster;
+
 service ClusterService {
     rpc cluster_status(ClusterStatusRequest) returns (ClusterStatusReply) {}
 }
