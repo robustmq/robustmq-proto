@@ -387,20 +387,16 @@ message FlappingDetectRaw {
 
 // --------- observability service --------
 // --------- slow subscribe feature -------
-enum DelayType {
-  Whole = 0;
-  Internal = 1;
-  Response = 2;
-}
+
 message SetSlowSubscribeConfigRequest {
   uint32 max_store_num = 1;
-  DelayType delay_type = 2;
+  string delay_type = 2;
 }
 
 message SetSlowSubscribeConfigReply {
   bool is_enable = 1;
   uint32 max_store_num = 2;
-  DelayType delay_type = 3;
+  string delay_type = 3;
 }
 
 message ListSlowSubscribeRequest {
