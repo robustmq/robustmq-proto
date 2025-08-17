@@ -58,6 +58,7 @@ service MQTTBrokerAdminService {
   rpc ListConnection(ListConnectionRequest) returns (ListConnectionReply) {}
 
   // observability: slow-sub
+  rpc SetSlowSubscribeConfig(SetSlowSubscribeConfigRequest) returns (SetSlowSubscribeConfigReply) {}
   rpc ListSlowSubscribe(ListSlowSubscribeRequest) returns (ListSlowSubscribeReply) {}
   rpc ListTopic(ListTopicRequest) returns (ListTopicReply) {}
 
@@ -386,6 +387,18 @@ message FlappingDetectRaw {
 
 // --------- observability service --------
 // --------- slow subscribe feature -------
+
+message SetSlowSubscribeConfigRequest {
+  uint32 max_store_num = 1;
+  string delay_type = 2;
+}
+
+message SetSlowSubscribeConfigReply {
+  bool is_enable = 1;
+  uint32 max_store_num = 2;
+  string delay_type = 3;
+}
+
 message ListSlowSubscribeRequest {
   uint64 list = 1;
   string topic = 2;
@@ -400,11 +413,11 @@ message ListSlowSubscribeReply {
 
 message ListSlowSubScribeRaw {
   string client_id = 1;
-  string topic = 2;
-  uint64 time_ms = 3;
+  string topic_name = 2;
+  uint64 time_span = 3;
   string node_info = 4;
   uint64 create_time = 5;
-  string sub_name = 6;
+  string subscribe_name = 6;
 }
 
 // --------- system alarm --------
@@ -514,7 +527,7 @@ message ConnectorRaw {
   string topic_id = 4;
   string cluster_name = 5;
   uint64 create_time = 6;
-  uint64 update_time = 7; 
+  uint64 update_time = 7;
   string config = 8;
   optional uint64 broker_id = 9;
 }
