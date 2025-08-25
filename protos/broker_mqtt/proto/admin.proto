@@ -540,6 +540,7 @@ enum MqttStatus {
 enum ConnectorType {
   File = 0;
   Kafka = 1;
+  Greptimedb = 2;
 }
 
 message CreateConnectorRequest {
