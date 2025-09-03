@@ -462,12 +462,6 @@ message ConnectorRaw {
   optional uint64 broker_id = 9;
 }
 
-enum MqttStatus {
-  idle = 0;
-  running = 1;
-}
-
-
 message CreateConnectorRequest {
   string connector_name = 1;
   string connector_type = 2;
