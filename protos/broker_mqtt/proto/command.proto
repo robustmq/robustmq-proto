@@ -193,12 +193,10 @@ message SessionRaw {
 
 // --------- user --------
 message ListUserRequest {
-  optional QueryOptions options = 1;
 }
 
 message ListUserReply {
   repeated UserRaw users = 1;
-  uint32 total_count = 2;
 }
 
 message UserRaw {
