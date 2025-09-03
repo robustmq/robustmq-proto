@@ -18,21 +18,15 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     // Declare dependencies for all proto files and directories
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root
-            .join("protos/journal_server/proto/*.proto")
-            .display()
+        proto_root.join("protos/journal/*.proto").display()
     );
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root
-            .join("protos/broker_mqtt/proto/*.proto")
-            .display()
+        proto_root.join("protos/mqtt/*.proto").display()
     );
     println!(
         "cargo:rerun-if-changed={}",
-        proto_root
-            .join("protos/placement_center/proto/*.proto")
-            .display()
+        proto_root.join("protos/meta/*.proto").display()
     );
     println!(
         "cargo:rerun-if-changed={}",
@@ -43,19 +37,19 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     tonic_build::configure().build_server(true).compile_protos(
         &[
             proto_root
-                .join("protos/journal_server/proto/command.proto")
+                .join("protos/journal/command.proto")
                 .to_str()
                 .unwrap(),
             proto_root
-                .join("protos/journal_server/proto/engine.proto")
+                .join("protos/journal/engine.proto")
                 .to_str()
                 .unwrap(),
             proto_root
-                .join("protos/journal_server/proto/inner.proto")
+                .join("protos/journal/inner.proto")
                 .to_str()
                 .unwrap(),
             proto_root
-                .join("protos/journal_server/proto/record.proto")
+                .join("protos/journal/record.proto")
                 .to_str()
                 .unwrap(),
         ],
@@ -66,18 +60,15 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     tonic_build::configure().build_server(true).compile_protos(
         &[
             proto_root
-                .join("protos/broker_mqtt/proto/command.proto")
+                .join("protos/mqtt/command.proto")
                 .to_str()
                 .unwrap(),
-            proto_root
-                .join("protos/broker_mqtt/proto/inner.proto")
-                .to_str()
-                .unwrap(),
+            proto_root.join("protos/mqtt/inner.proto").to_str().unwrap(),
         ],
         &[proto_root.join("protos/").to_str().unwrap()],
     )?;
 
-    // Placement Center
+    // meta service
     let config = {
         let mut c = prost_build::Config::new();
         c.type_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]");
@@ -88,27 +79,18 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
         config,
         &[
             proto_root
-                .join("protos/placement_center/proto/journal.proto")
+                .join("protos/meta/journal.proto")
+                .to_str()
+                .unwrap(),
+            proto_root.join("protos/meta/kv.proto").to_str().unwrap(),
+            proto_root.join("protos/meta/mqtt.proto").to_str().unwrap(),
+            proto_root.join("protos/meta/inner.proto").to_str().unwrap(),
+            proto_root
+                .join("protos/meta/openraft.proto")
                 .to_str()
                 .unwrap(),
             proto_root
-                .join("protos/placement_center/proto/kv.proto")
-                .to_str()
-                .unwrap(),
-            proto_root
-                .join("protos/placement_center/proto/mqtt.proto")
-                .to_str()
-                .unwrap(),
-            proto_root
-                .join("protos/placement_center/proto/inner.proto")
-                .to_str()
-                .unwrap(),
-            proto_root
-                .join("protos/placement_center/proto/openraft.proto")
-                .to_str()
-                .unwrap(),
-            proto_root
-                .join("protos/placement_center/proto/cluster.proto")
+                .join("protos/meta/cluster.proto")
                 .to_str()
                 .unwrap(),
         ],
