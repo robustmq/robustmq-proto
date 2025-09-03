@@ -172,11 +172,9 @@ message ClientRaw {
 
 // ----------- session --------
 message ListSessionRequest {
-  optional QueryOptions options = 1;
 }
 message ListSessionReply {
   repeated SessionRaw sessions = 1;
-  uint32 total_count = 2;
 }
 message SessionRaw {
   string client_id = 1;
@@ -300,12 +298,10 @@ message EnableFlappingDetectReply {
 }
 
 message ListFlappingDetectRequest {
-  optional QueryOptions options = 1;
 }
 
 message ListFlappingDetectReply {
   repeated FlappingDetectRaw flapping_detect_raw = 1;
-  uint32 total_count = 2;
 }
 
 message FlappingDetectRaw {
@@ -569,13 +565,10 @@ message DeleteAutoSubscribeRuleRequest {
 message DeleteAutoSubscribeRuleReply {}
 
 // --------- subscribe  --------
-message ListSubscribeRequest {
-  optional QueryOptions options = 1;
-}
+message ListSubscribeRequest {}
 
 message ListSubscribeReply {
   repeated MqttSubscribeRaw subscriptions = 1;
-  uint32 total_count = 2;
 }
 
 message MqttSubscribeRaw {
