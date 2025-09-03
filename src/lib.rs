@@ -43,7 +43,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     tonic_build::configure().build_server(true).compile_protos(
         &[
             proto_root
-                .join("protos/journal_server/proto/admin.proto")
+                .join("protos/journal_server/proto/command.proto")
                 .to_str()
                 .unwrap(),
             proto_root
@@ -66,7 +66,7 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     tonic_build::configure().build_server(true).compile_protos(
         &[
             proto_root
-                .join("protos/broker_mqtt/proto/admin.proto")
+                .join("protos/broker_mqtt/proto/command.proto")
                 .to_str()
                 .unwrap(),
             proto_root

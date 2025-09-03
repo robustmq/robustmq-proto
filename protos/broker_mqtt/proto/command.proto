@@ -250,28 +250,17 @@ message CreateAclReply {}
 // --------- blacklist --------
 message ListBlacklistRequest {
   string cluster_name = 1;
-  optional QueryOptions options = 2;
 }
 
 message ListBlacklistReply {
   repeated BlacklistRaw blacklists = 1;
-  uint32 total_count = 2;
 }
 
 message BlacklistRaw {
-  BlacklistType blacklist_type = 1;
+  string blacklist_type = 1;
   string resource_name = 2;
   uint64 end_time = 3;
   string desc = 4;
-}
-
-enum BlacklistType {
-  CLIENT_ID = 0;
-  USERNAME = 1;
-  IP_ADDRESS = 2;
-  CLIENT_ID_MATCH = 3;
-  USERNAME_MATCH = 4;
-  IP_CIDR = 5;
 }
 
 message CreateBlacklistRequest {
