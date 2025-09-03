@@ -19,18 +19,6 @@ package placement.center.inner;
 
 import "vendor/validate/validate.proto";
 
-// The type of the cluster.
-enum ClusterType {
-  // The type of the PlacementCenter.
-  PlacementCenter = 0;
-  // The type of the JournalServer.
-  JournalServer = 1;
-  // The type of the MQTTBrokerServer.
-  MQTTBrokerServer = 2;
-  // The type of the AMQPBrokerServer.
-  AMQPBrokerServer = 3;
-}
-
 service PlacementCenterService {
   rpc ClusterStatus(ClusterStatusRequest) returns (ClusterStatusReply) {}
 
@@ -96,7 +84,6 @@ message RegisterNodeRequest {
 message RegisterNodeReply {}
 
 message UnRegisterNodeRequest {
-  ClusterType cluster_type = 1;
   string cluster_name = 2 [(validate.rules).string.min_len = 1];
   uint64 node_id = 3 [(validate.rules).uint64.gte = 0];
 }
@@ -104,7 +91,6 @@ message UnRegisterNodeRequest {
 message UnRegisterNodeReply {}
 
 message HeartbeatRequest {
-  ClusterType cluster_type = 1;
   string cluster_name = 2 [(validate.rules).string.min_len = 1];
   uint64 node_id = 4 [(validate.rules).uint64.gte = 0];
 }
