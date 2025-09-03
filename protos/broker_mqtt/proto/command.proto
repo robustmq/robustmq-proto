@@ -149,11 +149,9 @@ message GetClusterConfigReply {
 
 // ---------- client --------
 message ListClientRequest {
-  optional QueryOptions options = 1;
 }
 message ListClientReply {
   repeated ClientRaw clients = 1;
-  uint32 total_count = 2;
 }
 message ClientRaw {
   // Basic Info
@@ -248,9 +246,7 @@ message CreateAclRequest {
 message CreateAclReply {}
 
 // --------- blacklist --------
-message ListBlacklistRequest {
-  string cluster_name = 1;
-}
+message ListBlacklistRequest {}
 
 message ListBlacklistReply {
   repeated BlacklistRaw blacklists = 1;
