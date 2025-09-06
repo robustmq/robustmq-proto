@@ -59,10 +59,6 @@ pub fn setup() -> Result<(), Box<dyn std::error::Error>> {
     // MQTT Broker
     tonic_build::configure().build_server(true).compile_protos(
         &[
-            proto_root
-                .join("protos/mqtt/command.proto")
-                .to_str()
-                .unwrap(),
             proto_root.join("protos/mqtt/inner.proto").to_str().unwrap(),
         ],
         &[proto_root.join("protos/").to_str().unwrap()],
